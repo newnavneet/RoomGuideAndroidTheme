@@ -9,7 +9,7 @@ interface ContactDao {
     fun upsertContact(contact: Contact)
 
     @Delete
-    fun deleteContact(contact: Contact)
+    fun deleteContact (contact: Contact)
 
 
     @Query("SELECT * FROM contact ORDER BY firstName ASC ")
