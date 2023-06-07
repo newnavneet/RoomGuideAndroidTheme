@@ -23,9 +23,8 @@ class ContactViewModel(
     private val _state = MutableStateFlow(ContactState())
     val state = combine(_state,_sortType,_contacts){state ,sortType ,contacts ->
         state.copy(
-            contact =  contacts,
+            contacts =  contacts,
             sortType = sortType
-
         )
 
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), ContactState())
@@ -52,7 +51,11 @@ class ContactViewModel(
                 if (firstName.isBlank() || lastName.isBlank() || phoneNumber.isBlank()){
                     return
                 }
-                val contact = Contact(
+
+                val contact
+
+
+                = Contact(
                     firstName = firstName,
                     lastName = lastName,
                     phoneNumber = phoneNumber
@@ -91,6 +94,7 @@ class ContactViewModel(
             }
 
             is ContactEvent.SortContacts -> {
+                _sortType.value = event.sortType
 
             }
 
